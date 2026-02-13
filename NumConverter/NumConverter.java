@@ -1,5 +1,7 @@
 package NumConverter;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -98,6 +100,15 @@ public class NumConverter {
         inputButton.addActionListener(e -> {
             binLabel.setText("Binary: " + toBinary((Number) numInput.getValue()));
             hexLabel.setText("Hexadeciemal: " + toHex((Number) numInput.getValue()));
+        });
+
+
+        // reset input field on click
+        inputButton.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                numInput.setValue(null);
+            }
         });
 
         // input panel
