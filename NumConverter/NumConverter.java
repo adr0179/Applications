@@ -98,8 +98,12 @@ public class NumConverter {
         // buttons
         JButton inputButton = new JButton("Convert");
         inputButton.addActionListener(e -> {
-            binLabel.setText("Binary: " + toBinary((Number) numInput.getValue()));
-            hexLabel.setText("Hexadeciemal: " + toHex((Number) numInput.getValue()));
+            if ((Number) numInput.getValue() == null) {
+                JOptionPane.showMessageDialog(frame, "Input Must Be A Number", "Invalid Input", JOptionPane.ERROR_MESSAGE);
+            } else {
+                binLabel.setText("Binary: " + toBinary((Number) numInput.getValue()));
+                hexLabel.setText("Hexadeciemal: " + toHex((Number) numInput.getValue()));
+            }
         });
 
         // reset input field on click
