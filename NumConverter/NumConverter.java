@@ -102,7 +102,6 @@ public class NumConverter {
             hexLabel.setText("Hexadeciemal: " + toHex((Number) numInput.getValue()));
         });
 
-
         // reset input field on click
         inputButton.addFocusListener(new FocusAdapter() {
             @Override
