@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.MaskFormatter;
 
 // work in progress
@@ -80,20 +81,37 @@ public class NumConverter {
     public static void main(String[] args) throws ParseException {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout(FlowLayout.CENTER));
+        frame.setLayout(new BorderLayout());
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridBagLayout());
+        mainPanel.setOpaque(false);
 
         JPanel inputPanel = new JPanel();
         JPanel outputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+        inputPanel.setOpaque(false);
         outputPanel.setLayout(new BoxLayout(outputPanel, BoxLayout.Y_AXIS));
+        outputPanel.setOpaque(false);
 
         // input components
         JLabel inputLabel = new JLabel("Number to Convert");
+        inputLabel.setOpaque(true);
         JFormattedTextField numInput = new JFormattedTextField(NumberFormat.getIntegerInstance());
+        
+        // colour
+        JColorChooser colour = new JColorChooser();
+        colour.setVisible(false);
+
+        colour.getSelectionModel().addChangeListener(e -> {
+            frame.getContentPane().setBackground(colour.getColor());
+        });
 
         // output componets
         JLabel binLabel = new JLabel("Binary: ");
         JLabel hexLabel = new JLabel("Hexadecimal: ");
+        binLabel.setOpaque(true);
+        hexLabel.setOpaque(true);
 
         // buttons
         JButton inputButton = new JButton("Convert");
@@ -103,6 +121,17 @@ public class NumConverter {
             } else {
                 binLabel.setText("Binary: " + toBinary((Number) numInput.getValue()));
                 hexLabel.setText("Hexadeciemal: " + toHex((Number) numInput.getValue()));
+            }
+        });
+
+        JButton colourChangeButton = new JButton("Change Background Colour");
+        colourChangeButton.setBackground(Color.GRAY);
+        colourChangeButton.addActionListener(e -> {
+            // set colour visable
+            if (!colour.isVisible()) {
+                colour.setVisible(true);
+            } else {
+                colour.setVisible(false);
             }
         });
 
@@ -125,8 +154,13 @@ public class NumConverter {
 
         // frame
         frame.setSize(700, 700);
-        frame.add(inputPanel);
-        frame.add(outputPanel);
+        mainPanel.setSize(300, 300);
+        mainPanel.add(inputPanel);
+        mainPanel.add(outputPanel);
+        frame.add(colour, BorderLayout.PAGE_END);
+        frame.add(colourChangeButton, BorderLayout.LINE_START);
+        frame.add(mainPanel, BorderLayout.CENTER);
+        
         frame.setVisible(true);
 
         // System.out.println(toBinary(87));
