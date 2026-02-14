@@ -7,7 +7,7 @@ import java.text.NumberFormat;
 
 import javax.swing.*;
 
-public class GUI {
+public class UI {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
