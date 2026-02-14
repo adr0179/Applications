@@ -1,14 +1,5 @@
 package NumConverter;
-import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-
-import javax.swing.*;
-import javax.swing.event.ChangeListener;
-import javax.swing.text.MaskFormatter;
 
 // work in progress
 
