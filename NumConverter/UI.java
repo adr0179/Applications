@@ -12,6 +12,7 @@ public class UI {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+        frame.setTitle("Decimal Number Converter");
 
         JPanel mainPanel = new JPanel();
         GridBagConstraints c = new GridBagConstraints();
